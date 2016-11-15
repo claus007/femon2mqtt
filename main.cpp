@@ -29,7 +29,7 @@ char * topicName(const char * name)
     return result;
 }
 
-void my_log_callback(struct mosquitto *mosq, void *userdata, int level, const char *str)
+void my_log_callback(struct mosquitto *, void *, int , const char *str)
 {
     /* Pring all log messages regardless of level. */
     printf("%s\n", str);
@@ -38,7 +38,7 @@ void my_log_callback(struct mosquitto *mosq, void *userdata, int level, const ch
 
 bool connectMqtt(char * host,int port)
 {
-    char * offline="disconnected";
+    const char * offline="disconnected";
     mosq = mosquitto_new(NULL, true, NULL);
     if(!mosq)
     {
@@ -86,7 +86,7 @@ void send(const char * topic,const char * payload)
 
 }
 
-bool monitorDevice(int adapter,int frontend, const char * topic)
+bool monitorDevice(int adapter,int frontend)
 {
     struct dvbfe_handle *fe;
     struct dvbfe_info fe_info;
