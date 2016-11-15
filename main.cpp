@@ -107,7 +107,7 @@ bool monitorDevice(int adapter,int frontend)
         if (dvbfe_get_info(fe, (dvbfe_info_mask)FE_STATUS_PARAMS, &fe_info, DVBFE_INFO_QUERYTYPE_IMMEDIATE, 0) != FE_STATUS_PARAMS)
         {
             fprintf(stderr, "Problem retrieving frontend information: %m\n");
-            return false;
+            //return false;
         }
         send("Status","Ok");
         send("Lock",(fe_info.lock)?"Yes":"No");
