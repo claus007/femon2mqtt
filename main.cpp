@@ -62,7 +62,7 @@ bool connectMqtt(char * host,int port)
         return false;
     }
 
-    mosquitto_loop_start((mosq);
+    mosquitto_loop_start(mosq);
     return true;
 }
 
@@ -86,7 +86,7 @@ void send(char * topic,char * payload)
 
 }
 
-bool monitorDevice(adapter,frontend, topic)
+bool monitorDevice(int adapter,int frontend, const char * topic)
 {
     struct dvbfe_handle *fe;
     struct dvbfe_info fe_info;
