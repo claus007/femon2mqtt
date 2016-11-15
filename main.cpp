@@ -14,7 +14,7 @@
 
 #define FE_STATUS_PARAMS (DVBFE_INFO_LOCKSTATUS|DVBFE_INFO_SIGNAL_STRENGTH|DVBFE_INFO_BER|DVBFE_INFO_SNR|DVBFE_INFO_UNCORRECTED_BLOCKS)
 
-int                sleep_time = 1000000;
+int                sleep_time = 10*1000000;
 bool               verbose    = false;
 struct mosquitto * mosq       = NULL;
 
@@ -83,7 +83,7 @@ void send(const char * topic,const char * payload)
        retain);
 
     if (verbose)
-        printf("sending: %s --> %s",topic,payload);
+        printf("sending: %s --> %s\n",topic,payload);
 
     delete topic;
 
