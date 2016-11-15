@@ -82,6 +82,9 @@ void send(const char * topic,const char * payload)
        qos,
        retain);
 
+    if (verbose)
+        printf("sending: %s --> %s",topic,payload);
+
     delete topic;
 
 }
@@ -101,7 +104,7 @@ bool monitorDevice(int adapter,int frontend)
 
     while (1)
     {
-        if (dvbfe_get_info(fe, FE_STATUS_PARAMS, &fe_info, DVBFE_INFO_QUERYTYPE_IMMEDIATE, 0) != FE_STATUS_PARAMS)
+        if (dvbfe_get_info(fe, (dvbfe_info_mask)FE_STATUS_PARAMS, &fe_info, DVBFE_INFO_QUERYTYPE_IMMEDIATE, 0) != FE_STATUS_PARAMS)
         {
             fprintf(stderr, "Problem retrieving frontend information: %m\n");
             return false;
