@@ -123,10 +123,8 @@ bool monitorDevice(int adapter,int frontend)
 
 int main(int argc, char *argv[])
 {
-    char    * host="localhost";
-    int       port=1883;
-
-    int       opterr = 0;
+    const char * host="localhost";
+    int          port=1883;
 
     int c;
 
@@ -183,7 +181,7 @@ int main(int argc, char *argv[])
         return 2;
     }
 
-    if (  monitorDevice(adapter,frontend, topic) == false)
+    if (  monitorDevice(adapter,frontend) == false)
     {
         return 3;
     }
