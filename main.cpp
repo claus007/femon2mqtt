@@ -18,7 +18,7 @@ int                sleep_time = 1000000;
 bool               verbose    = false;
 struct mosquitto * mosq       = NULL;
 
-char *    topic="FS20/SateliteDish";
+const char * topic="FS20/SateliteDish";
 int       adapter=0;
 int       frontend=0;
 
@@ -66,7 +66,7 @@ bool connectMqtt(char * host,int port)
     return true;
 }
 
-void send(char * topic,char * payload)
+void send(const char * topic,const char * payload)
 {
     int mid;
     int qos=0;
@@ -90,7 +90,7 @@ bool monitorDevice(int adapter,int frontend, const char * topic)
 {
     struct dvbfe_handle *fe;
     struct dvbfe_info fe_info;
-    char *fe_type = "UNKNOWN";
+    //const char *fe_type = "UNKNOWN";
 
     fe = dvbfe_open(adapter, frontend, 1);
     if (fe == NULL)
