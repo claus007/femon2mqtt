@@ -1,7 +1,7 @@
 QT += core
 QT -= gui
 
-CONFIG += c++11
+CONFIG += c++11 debug
 
 TARGET = femonitor
 CONFIG += console
@@ -11,4 +11,4 @@ TEMPLATE = app
 
 SOURCES += main.cpp
 
-LIBS += mosquitto dvbapi
+LIBS += -lmosquitto -ldvbapi
