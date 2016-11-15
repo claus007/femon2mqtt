@@ -48,7 +48,7 @@ bool connectMqtt(char * host,int port)
     mosquitto_log_callback_set(mosq, my_log_callback);
 
     char * topic=topicName("Status");
-    mosquitto_will_set(mosq,topic,strlen(offline),offline);
+    mosquitto_will_set(mosq,topic,strlen(offline),offline,0,true);
 
 
     delete topic;
