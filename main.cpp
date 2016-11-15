@@ -36,7 +36,7 @@ void my_log_callback(struct mosquitto *, void *, int , const char *str)
 }
 
 
-bool connectMqtt(char * host,int port)
+bool connectMqtt(const char * host,int port)
 {
     const char * offline="disconnected";
     mosq = mosquitto_new(NULL, true, NULL);
