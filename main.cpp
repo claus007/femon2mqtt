@@ -1,3 +1,19 @@
+/*
+   Copyright 2019 Claus Ilginnis
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
+
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -45,8 +61,10 @@ bool connectMqtt(const char * host,int port)
         fprintf(stderr, "Error: Out of memory.\n");
         return false;
     }
+    // let mosquitto printf
     mosquitto_log_callback_set(mosq, my_log_callback);
 
+    // if we get disconected status will go to disconnected
     char * topic=topicName("Status");
     mosquitto_will_set(mosq,topic,strlen(offline),offline,0,true);
 
@@ -62,6 +80,8 @@ bool connectMqtt(const char * host,int port)
         return false;
     }
 
+    // this loop is neccessary to do the
+    // keep alive messages
     mosquitto_loop_start(mosq);
     return true;
 }
@@ -104,11 +124,14 @@ bool monitorDevice(int adapter,int frontend)
 
     while (1)
     {
+        // the real query
         if (dvbfe_get_info(fe, (dvbfe_info_mask)FE_STATUS_PARAMS, &fe_info, DVBFE_INFO_QUERYTYPE_IMMEDIATE, 0) != FE_STATUS_PARAMS)
         {
             fprintf(stderr, "Problem retrieving frontend information: %m\n");
             //return false;
         }
+        
+        // keep status ok - despite last will
         send("Status","Ok");
         send("Lock",(fe_info.lock)?"Yes":"No");
 
@@ -119,6 +142,7 @@ bool monitorDevice(int adapter,int frontend)
         sprintf(buffer,"%3u%%",(fe_info.snr * 100) / 0xffff);
         send("SignalNoiseRatio",buffer);
 
+        // time to sleep
         usleep(sleep_time);
     }
 }
