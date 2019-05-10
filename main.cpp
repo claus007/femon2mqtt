@@ -161,13 +161,13 @@ int main(int argc, char *argv[])
         switch (c)
         {
         case 'h':
-            printf("%s -h        this help message", argv[0]);
-            printf("   -H        m-host to connect to (default localhost)");
-            printf("   -p        m-port to connect to (default 1883)");
-            printf("   -t        m-topic (default 'FS20/SateliteDish_<Adapter>_<Frontend>)");
-            printf("   -a        adapter (default 0)");
-            printf("   -f        frontend (default 0)");
-            printf("   -v        verbose mode");
+            printf("%s -h        this help message\n", argv[0]);
+            printf("   -H        m-host to connect to (default localhost)\n");
+            printf("   -p        m-port to connect to (default 1883)\n");
+            printf("   -t        m-topic (default 'FS20/SateliteDish_<Adapter>_<Frontend>)\n");
+            printf("   -a        adapter (default 0)\n");
+            printf("   -f        frontend (default 0)\n");
+            printf("   -v        verbose mode\n");
             return 0;
         case 'H':
             host = optarg;
