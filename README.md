@@ -23,7 +23,9 @@ then do:
 ### Running the correct way
 
 > sudo mv femonitor /usr/bin
+
 > sudo chown root /usr/bin/femonitor
+
 > sudo chmod u+s /usr/bin/femonitor
 
 Then you can run femonitor as normal user
