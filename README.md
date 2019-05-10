@@ -32,5 +32,10 @@ Then you can run femonitor as normal user
 
 ## Options
 
-
-
+femonitor -h        this help message
+          -H        m-host to connect to (default localhost)
+          -p        m-port to connect to (default 1883)   
+          -t        m-topic (default 'FS20/SateliteDish_<Adapter>_<Frontend>)   
+          -a        adapter (default 0)   
+          -f        frontend (default 0)   
+          -v        verbose mode
